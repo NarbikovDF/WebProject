@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebProject.Data.Entity.Bet>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-dark">Список ставок</h2>
+        </div>
+        @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+        {
+            <div class="col-6 text-right">
+                <a asp-controller="Bet" asp-action="Create" class="btn btn-primary">Создать "ставку"</a>
+            </div>
+        }
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Ставка
+                    </th>
+                    <th>
+                        Дата ставки
+                    </th>
+                    <th>
+                        Коэффициент
+                    </th>
+                    <th>
+                        Результат
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bet in Model)
+                {
+                <tr>
+                    <td width="25%">@bet.Summ</td>
+                    <td width="25%">@bet.Date_bet</td>
+                    <td width="25%">@bet.Coef</td>
+                    <td width="25%">@bet.StatusBet</td>
+                    @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+                    {
+                        <td width="25%">
+                            <div class="w-150 btn-group" role="group">
+                                <a asp-controller="Bet" asp-action="Update" asp-route-Id="@bet.Id" class="btn btn-success mx-1">Изменить</a>
+                                <a asp-controller="Bet" asp-action="Delete" asp-route-Id="@bet.Id" class="btn btn-danger mx-1">Удалить</a>
+                            </div>
+                        </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items created yet</p>
+    }
+
+</div>
+

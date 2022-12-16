@@ -1,0 +1,50 @@
+﻿@model WebProject.Data.Entity.Bet
+
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Добавить ставку</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Summ" class="control-label"></label>
+                    <input asp-for="Summ" class="form-control" />
+                    <span asp-validation-for="Summ" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date_bet" class="control-label"></label>
+                    <input asp-for="Date_bet" class="form-control" />
+                    <span asp-validation-for="Date_bet" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Coef" class="control-label"></label>
+                    <input asp-for="Coef" class="form-control" />
+                    <span asp-validation-for="Coef" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StatusBet" class="control-label"></label>
+                    <input asp-for="StatusBet" class="form-control" />
+                    <span asp-validation-for="StatusBet" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12 row">
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-success w-150" value="Создать" />
+                        </div>
+                        <div class="col-4">
+                            <a asp-action="Index" class="btn btn-info w-150">Вернуться</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
